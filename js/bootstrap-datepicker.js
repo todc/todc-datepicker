@@ -104,6 +104,8 @@
 				this.viewMode = this.startViewMode = 1;
 				break;
 		}
+		
+		this.targetInput = options.targetInput;
 
 		this.todayBtn = (options.todayBtn||this.element.data('date-today-btn')||false);
 		this.todayHighlight = (options.todayHighlight||this.element.data('date-today-highlight')||false);
@@ -245,6 +247,11 @@
 
 		setValue: function() {
 			var formatted = this.getFormattedDate();
+			
+			if (this.targetInput) {
+				this.targetInput.val(formatted);
+			}
+			
 			if (!this.isInput) {
 				if (this.component){
 					this.element.find('input').val(formatted);
