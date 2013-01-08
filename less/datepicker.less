@@ -11,7 +11,7 @@
 .datepicker {
 	padding: 4px;
 	margin-top: 1px;
-	.border-radius(4px);
+	.border-radius(0);
 	&-inline {
 		width: 220px;
 	}
@@ -67,7 +67,7 @@
 		text-align: center;
 		width: 20px;
 		height: 20px;
-		.border-radius(4px);
+		.border-radius(0);
 
 		border: none;
 	}
@@ -97,14 +97,14 @@
 		&.today:hover,
 		&.today.disabled,
 		&.today.disabled:hover {
-			@todayBackground: lighten(@orange, 30%);
-			.buttonBackground(@todayBackground, spin(@todayBackground, 20));
+			@todayBackground: #ffd76e;
+			.buttonBackground(#ffd76e, #ffd76e);
 		}
 		&.active,
 		&.active:hover,
 		&.active.disabled,
 		&.active.disabled:hover {
-			.buttonBackground(@btnPrimaryBackground, spin(@btnPrimaryBackground, 20));
+			.buttonBackground(#4D90FE, #4D90FE);
 			color: #fff;
 			text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 		}
@@ -116,7 +116,7 @@
 			float: left;
 			margin: 1%;
 			cursor: pointer;
-			.border-radius(4px);
+			.border-radius(0);
 			&:hover {
 				background: @grayLighter;
 			}
@@ -130,7 +130,7 @@
 			&.active:hover,
 			&.active.disabled,
 			&.active.disabled:hover {
-				.buttonBackground(@btnPrimaryBackground, spin(@btnPrimaryBackground, 20));
+				.buttonBackground(#4D90FE, #4D90FE);
 				color: #fff;
 				text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 			}
