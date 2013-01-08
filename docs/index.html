@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/google-bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/google-datepicker.css" />
+  
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
+  
+  <style type="text/css">
+    html,body { margin: 20px; }
+  </style>
+</head>
+<body>
+  <form class="form-horizontal">
+    <div class="control-group">
+      <label class="control-label" for="dt1">Select Date</label>
+      <div class="controls">
+        <div class="input-append">
+          <input class="span2" id="dt1" type="text" />
+          <span class="add-on" id="cal1"><i class="icon-calendar"></i></span>
+        </div>
+      </div>
+    </div>
+  </form>
+</body>
+
+<script type="text/javascript">
+$(function() {
+    $('#cal1').datepicker({ 
+      autoclose: true, 
+      todayHighlight: true, 
+      targetInput: $("#dt1") 
+    });
+});
+</script>
+
+</html>
