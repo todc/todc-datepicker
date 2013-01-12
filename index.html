@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+  <title>Google Datepicker Demo</title>
+  <meta name="description" content="Datepicker component themed for use with Google Bootstrap">
+  
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/google-bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/google-datepicker.css" />
+  <link rel="stylesheet" type="text/css" href="assets/css/prettify.css">
+  
+  <script type="text/javascript" src="assets/js/prettify.min.js"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/js/bootstrap-datepicker.js"></script>
+</head>
+<body>
+  
+<script id="script_e1">
+$(function() {
+  $('#cal1').datepicker({ 
+    autoclose: true, 
+    todayHighlight: true, 
+    targetInput: $("#dt1") 
+  });
+});
+</script>
+
+<div class="container">
+    <a href="https://github.com/ivaynberg/select2"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <div class="hero-unit" style="margin-top: 40px;">
+      <h1>Google Datepicker</h1>
+      <p>
+        <a href="http://github.com/todc/google-datepicker" title="GitHub repository">Google Datepicker</a>
+        is a fork of <a href="https://github.com/eternicode/">Andrew Rowls</a>' <a href="https://github.com/eternicode/bootstrap-datepicker">bootstrap-datepicker</a> and
+        provides a themed datepicker component which fits naturally with <a href="https://github.com/todc/css3-google-buttons">Google Bootstrap</a>.
+      </p>
+      <p>
+        <a class="btn btn-primary btn-large" href="https://github.com/todc/google-datepicker">Learn more on GitHub &raquo;</a>
+        <a class="btn btn-success btn-large" href="https://github.com/todc/google-datepicker/tags">Download &raquo;</a>
+      </p>
+    </div>
+    
+    <section class="examples">
+    <div class="row">
+        <div class="span12">
+            <h2>Examples</h2>
+            <hr/>
+        </div>
+    </div>
+    
+    <article class="row" id="multi">
+        <div class="span4">
+            <h3>Appended Input</h3>
+            <p>Use an image appended to a textbox to trigger the datepicker.</p>
+            <p>
+                <form class="form-horizontal">
+                  <div class="input-append">
+                    <input class="span2" id="dt1" type="text" />
+                    <button class="btn" type="button" id="cal1"><i class="icon-calendar"></i></button>
+                  </div>
+                </form>
+            </p>
+        </div>
+        <div class="span8">
+            <h3>Example Code</h3>
+              <pre class="prettyprint linenums" id="code_e1">
+              </pre>
+        </div>
+    </article>
+
+    <div class="section">
+        <h2>Acknowledgements</h2>
+        <p>
+          <a href="https://github.com/eternicode/">Andrew Rowls</a>, of course, for his fork of
+          <a href="http://www.eyecon.ro/">Stefan Petre</a>'s bootstrap-datepicker.
+        </p>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+$(function() {
+    function setupExampleCode(id) {
+        var s = $("#script_"+id).html();
+        s = s.replace(/</g, "&lt;");
+        s = s.substr(s.indexOf("\n") + 1);
+        s = s.substr(s.indexOf("\n") + 1);
+        s = s.substr(0, s.lastIndexOf("\n"));
+        s = s.substr(0, s.lastIndexOf("\n"));
+        $("#code_"+id).html(s);
+    }
+
+    var i, e;
+    for (i = 1; ; i++) {
+        e = $("#script_e" + i);
+        if (e.length == 0) break;
+        setupExampleCode("e" + i);
+    }
+    
+    prettyPrint();
+});
+</script>
+
+</body>
+</html>
