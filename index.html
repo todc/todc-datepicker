@@ -40,15 +40,16 @@ $(function() {
 });
 </script>
 
-<script id="script_e4">
+<script id="script_e3">
 $(function() {
-  $('#cal4').datepicker({ 
-    autoclose: true,
-    format: 'mm/dd/yyyy' 
-  }).on('changeDate', function(e) {
-    $('#dt4').text($('#cal4').data('date'));
-    $('#cal4').datepicker('hide');
-  });
+  $('#cal4')
+    .datepicker({
+      format: 'mm/dd/yyyy' 
+    })
+    .on('changeDate', function(e) {
+      $('#dt4').text($('#cal4').data('date'));
+      $('#cal4').datepicker('hide');
+    });
 });
 </script>
 
@@ -135,7 +136,7 @@ $(function() {
         </div>
         <div class="span8">
             <h3>Example Code</h3>
-            <pre class="prettyprint linenums" id="code_e4"></pre>
+            <pre class="prettyprint linenums" id="code_e3"></pre>
         </div>
     </article>
     
