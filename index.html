@@ -40,6 +40,18 @@ $(function() {
 });
 </script>
 
+<script id="script_e4">
+$(function() {
+  $('#cal4').datepicker({ 
+    autoclose: true,
+    format: 'mm/dd/yyyy' 
+  }).on('changeDate', function(e) {
+    $('#dt4').text($('#cal4').data('date'));
+    $('#cal4').datepicker('hide');
+  });
+});
+</script>
+
 <div class="container">
     <a href="https://github.com/ivaynberg/select2"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 2000" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
 
@@ -106,17 +118,42 @@ $(function() {
         <div class="span8">
             <h3>Example Code</h3>
             <pre class="prettyprint linenums" id="code_e2"></pre>
-            <pre class="prettyprint linenums" id="code_e2_1">&lt;input id="cal3" type="text" data-date-format="mm-dd-yyyy"/&gt;</pre>
+            <pre class="prettyprint linenums" id="code_e2_html">&lt;input id="cal3" type="text" data-date-format="mm-dd-yyyy"/&gt;</pre>
         </div>
     </article>
+    
+    <article class="row zebra" id="date-formatting">
+        <div class="span4">
+            <h3>Events</h3>
+            <p>Use events when attaching a datepicker to a non-field element.</p>
+            <p>
+                <form class="form-horizontal">
+                  <b>Selected Date:</b> <span id="dt4"></span> <br>
+                  <button type="button" class="btn" id="cal4">Select a Date</button>
+                </form>
+            </p>
+        </div>
+        <div class="span8">
+            <h3>Example Code</h3>
+            <pre class="prettyprint linenums" id="code_e4"></pre>
+        </div>
+    </article>
+    
+    </section>
 
-    <div class="section">
-        <h2>Acknowledgements</h2>
-        <p>
-          <a href="https://github.com/eternicode/">Andrew Rowls</a>, of course, for his fork of
-          <a href="http://www.eyecon.ro/">Stefan Petre</a>'s bootstrap-datepicker.
-        </p>
-    </div>
+    <section class="examples">
+      <div class="row">
+          <div class="span12">
+              <h2>Acknowledgements</h2>
+              <hr/>
+          </div>
+      </div>
+
+      <p>
+        <a href="https://github.com/eternicode/">Andrew Rowls</a>, of course, for his fork of
+        <a href="http://www.eyecon.ro/">Stefan Petre</a>'s bootstrap-datepicker.
+      </p>    
+    </section>
 
 </div>
 
