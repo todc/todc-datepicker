@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/google-bootstrap.css" />
   <link rel="stylesheet" type="text/css" href="assets/css/google-datepicker.css" />
   <link rel="stylesheet" type="text/css" href="assets/css/prettify.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/docs.css">
   
   <script type="text/javascript" src="assets/js/prettify.min.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
@@ -22,6 +23,19 @@ $(function() {
     autoclose: true, 
     todayHighlight: true, 
     targetInput: $("#dt1") 
+  });
+});
+</script>
+
+<script id="script_e2">
+$(function() {
+  $('#cal2').datepicker({ 
+    autoclose: true,
+    format: 'mm-dd-yyyy' 
+  });
+  
+  $('#cal3').datepicker({ 
+    autoclose: true
   });
 });
 </script>
@@ -50,7 +64,13 @@ $(function() {
         </div>
     </div>
     
-    <article class="row" id="multi">
+    <!-- ======================================================================
+       -
+       - EXAMPLES
+       -
+       - ================================================================== -->
+    
+    <article class="row" id="appended-input">
         <div class="span4">
             <h3>Appended Input</h3>
             <p>Use an image appended to a textbox to trigger the datepicker.</p>
@@ -65,8 +85,28 @@ $(function() {
         </div>
         <div class="span8">
             <h3>Example Code</h3>
-              <pre class="prettyprint linenums" id="code_e1">
-              </pre>
+            <pre class="prettyprint linenums" id="code_e1"></pre>
+        </div>
+    </article>
+    
+    <article class="row zebra" id="date-formatting">
+        <div class="span4">
+            <h3>Date Formatting</h3>
+            <p>The desired formatting for the selected date can be set via javascript during instantiation,
+              or in the input element's markup.</p>
+            <p>
+                <form class="form-horizontal">
+                  <div class="docs-input-sizes">
+                    <input class="span2" id="cal2" type="text" />
+                    <input class="span2" id="cal3" type="text" data-date-format="mm-dd-yyyy"/>
+                  </div>
+                </form>
+            </p>
+        </div>
+        <div class="span8">
+            <h3>Example Code</h3>
+            <pre class="prettyprint linenums" id="code_e2"></pre>
+            <pre class="prettyprint linenums" id="code_e2_1">&lt;input id="cal3" type="text" data-date-format="mm-dd-yyyy"/&gt;</pre>
         </div>
     </article>
 
