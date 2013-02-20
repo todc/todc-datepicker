@@ -250,6 +250,18 @@
 				date: this.date
 			});
 		},
+		
+		set: function() {
+			var formated = this.getFormattedDate();
+			if (!this.isInput) {
+				if (this.component){
+					this.element.find('input').prop('value', formated);
+				}
+				this.element.data('date', formated);
+			} else {
+				this.element.prop('value', formated);
+			}
+		},
 
 		remove: function() {
 			this._detachEvents();
@@ -568,6 +580,9 @@
 						if (!target.is('.disabled')) {
 							this.viewDate.setUTCDate(1);
 							if (target.is('.month')) {
+								var year = this.viewDate.getUTCFullYear(),
+									month = this.viewDate.getUTCMonth();
+								
 								var month = target.parent().find('span').index(target);
 								this.viewDate.setUTCMonth(month);
 								this.element.trigger({
@@ -582,8 +597,25 @@
 									date: this.viewDate
 								});
 							}
+							
+							if (this.viewMode !== 0) {
+								this.date = new Date(this.viewDate);
+							
+								if (this.date < this.startDate)
+									this.date = this.startDate;
+								else if (this.date > this.endDate)
+									this.date = this.endDate;
+
+								this.element.trigger({
+									type: 'changeDate',
+									date: this.date,
+									viewMode: DPGlobal.modes[this.viewMode].clsName
+								});
+							}
+							
 							this.showMode(-1);
 							this.fill();
+							this.set();
 						}
 						break;
 					case 'td':
@@ -1010,21 +1042,3 @@
 	$.fn.datepicker.DPGlobal = DPGlobal;
 
 }( window.jQuery );
-
-
-
-/**
- * French translation for bootstrap-datepicker
- * Nico Mollet <nico.mollet@gmail.com>
- */
-;(function($){
-	$.fn.datepicker.dates['fr'] = {
-		days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
-		daysShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
-		daysMin: ["D", "L", "Ma", "Me", "J", "V", "S", "D"],
-		months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
-		monthsShort: ["Jan", "Fev", "Mar", "Avr", "Mai", "Jui", "Jul", "Aou", "Sep", "Oct", "Nov", "Dec"],
-		today: "Aujourd'hui",
-		weekStart: 1
-	};
-}(jQuery));
