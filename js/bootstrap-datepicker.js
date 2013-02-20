@@ -92,7 +92,24 @@
 		} else if ('dateKeyboardNavigation' in this.element.data()) {
 			this.keyboardNavigation = this.element.data('date-keyboard-navigation');
 		}
-
+		
+		this.minViewMode = options.minViewMode||this.element.data('date-minviewmode')||0;
+		if (typeof this.minViewMode === 'string') {
+			switch (this.minViewMode) {
+				case 2:
+				case 'decade':
+					this.minViewMode = 2;
+					break;
+				case 1:
+				case 'year':
+					this.minViewMode = 1;
+					break;
+				default:
+					this.minViewMode = 0;
+					break;
+			}
+		}
+		
 		this.viewMode = this.startViewMode = 0;
 		switch(options.startView || this.element.data('date-start-view')){
 			case 2:
@@ -232,6 +249,18 @@
 				type: 'hide',
 				date: this.date
 			});
+		},
+		
+		set: function() {
+			var formated = this.getFormattedDate();
+			if (!this.isInput) {
+				if (this.component){
+					this.element.find('input').prop('value', formated);
+				}
+				this.element.data('date', formated);
+			} else {
+				this.element.prop('value', formated);
+			}
 		},
 
 		remove: function() {
@@ -551,6 +580,9 @@
 						if (!target.is('.disabled')) {
 							this.viewDate.setUTCDate(1);
 							if (target.is('.month')) {
+								var year = this.viewDate.getUTCFullYear(),
+									month = this.viewDate.getUTCMonth();
+								
 								var month = target.parent().find('span').index(target);
 								this.viewDate.setUTCMonth(month);
 								this.element.trigger({
@@ -565,8 +597,25 @@
 									date: this.viewDate
 								});
 							}
+							
+							if (this.viewMode !== 0) {
+								this.date = new Date(this.viewDate);
+							
+								if (this.date < this.startDate)
+									this.date = this.startDate;
+								else if (this.date > this.endDate)
+									this.date = this.endDate;
+
+								this.element.trigger({
+									type: 'changeDate',
+									date: this.date,
+									viewMode: DPGlobal.modes[this.viewMode].clsName
+								});
+							}
+							
 							this.showMode(-1);
 							this.fill();
+							this.set();
 						}
 						break;
 					case 'td':
@@ -760,7 +809,8 @@
 
 		showMode: function(dir) {
 			if (dir) {
-				this.viewMode = Math.max(0, Math.min(2, this.viewMode + dir));
+				/*this.viewMode = Math.max(0, Math.min(2, this.viewMode + dir));*/
+				this.viewMode = Math.max(this.minViewMode, Math.min(2, this.viewMode + dir));
 			}
 			/*
 				vitalets: fixing bug of very special conditions:
