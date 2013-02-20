@@ -92,7 +92,24 @@
 		} else if ('dateKeyboardNavigation' in this.element.data()) {
 			this.keyboardNavigation = this.element.data('date-keyboard-navigation');
 		}
-
+		
+		this.minViewMode = options.minViewMode||this.element.data('date-minviewmode')||0;
+		if (typeof this.minViewMode === 'string') {
+			switch (this.minViewMode) {
+				case 2:
+				case 'decade':
+					this.minViewMode = 2;
+					break;
+				case 1:
+				case 'year':
+					this.minViewMode = 1;
+					break;
+				default:
+					this.minViewMode = 0;
+					break;
+			}
+		}
+		
 		this.viewMode = this.startViewMode = 0;
 		switch(options.startView || this.element.data('date-start-view')){
 			case 2:
@@ -760,7 +777,8 @@
 
 		showMode: function(dir) {
 			if (dir) {
-				this.viewMode = Math.max(0, Math.min(2, this.viewMode + dir));
+				/*this.viewMode = Math.max(0, Math.min(2, this.viewMode + dir));*/
+				this.viewMode = Math.max(this.minViewMode, Math.min(2, this.viewMode + dir));
 			}
 			/*
 				vitalets: fixing bug of very special conditions:
@@ -992,3 +1010,21 @@
 	$.fn.datepicker.DPGlobal = DPGlobal;
 
 }( window.jQuery );
+
+
+
+/**
+ * French translation for bootstrap-datepicker
+ * Nico Mollet <nico.mollet@gmail.com>
+ */
+;(function($){
+	$.fn.datepicker.dates['fr'] = {
+		days: ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"],
+		daysShort: ["Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"],
+		daysMin: ["D", "L", "Ma", "Me", "J", "V", "S", "D"],
+		months: ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"],
+		monthsShort: ["Jan", "Fev", "Mar", "Avr", "Mai", "Jui", "Jul", "Aou", "Sep", "Oct", "Nov", "Dec"],
+		today: "Aujourd'hui",
+		weekStart: 1
+	};
+}(jQuery));
